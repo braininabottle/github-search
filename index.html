@@ -6,36 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Search</title>
     <link rel="stylesheet" href="./assets/styles.css">
-    <script defer src="./assets/js/main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 <body>
-    <main class="github">
-    <section class="search">
-        <input type="search" placeholder="Search a GitHub profile">
-    </section>
-    <article class="usercard">
-        <img src="./assets/images/avatar1.png" alt="">
-        <h1>Walter White</h1>
-        <p>Químico y profesor de química de Albuquerque, 
-            Nuevo México, diagnosticado con cáncer de pulmón inoperable, 
-            fabrico metanfetamina para poder mantener a mi familia de cara al futuro.</p>
-        <section class="data">
-            <ul>
-                <li>44 followers</li>
-                <li>33 following</li>
-                <li>32 repos</li>
-            </ul>
-        </section>
-        <section class="repos">
-            <a href="#">Repo 1</a>
-            <a href="#">Repo 2</a>
-            <a href="#">Repo 3</a>
-            <a href="#">Repo 4</a>
-            <a href="#">Repo 5</a>
-            <a href="#">Repo 6</a>
-            <a href="#">Repo 7</a>
-        </section>
-    </article>
+    <header></header>
+    <main class="github container-fluid">
+    <div class="search">
+        <form id="form">
+            <input id="search" type="search" placeholder="Search a GitHub profile">    
+        </form>
+    </div>
+
+    <div id="usercard" class="usercard d-flex col-3">
+      
+    </div>
+
     </main>
+    <footer></footer>
+    <script defer src="./assets/js/main.js"></script>
 </body>
 </html>
