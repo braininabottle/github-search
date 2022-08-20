@@ -2,7 +2,7 @@
 const form = document.getElementById('form')
 //obtener la barra de busqueda
 const search = document.getElementById('search')
-//obtener perfil  del usuario
+//obtener perfil del usuario
 const userCard = document.getElementById('usercard')
 
 // Escuchar el evento submit del form
@@ -23,19 +23,17 @@ async function getUserData(username){
         
         const userRequest = await fetch(API + username);
         
-        if(!userRequest.ok){
-            throw new Error(userRequest.status)
-        }
+        if(!userRequest.ok) throw new Error(userRequest.status)
         
         const userData = await userRequest.json();
         
         if(userData.public_repos){
-        const reposRequest = await fetch(API + username + "/repos");
-        const reposData = await reposRequest.json();
-        userData.repos = reposData;
-    }
+            const reposRequest = await fetch(API + username + "/repos");
+            const reposData = await reposRequest.json();
+            userData.repos = reposData;
+        }
 
-    showUserData(userData)
+        showUserData(userData)
 
     }catch(error){
       showError(error.message);
@@ -47,7 +45,7 @@ async function getUserData(username){
 
 function showUserData(userData){
 
-    const userContent = `
+    let userContent = `
     <img src="${userData.avatar_url}" alt="Avatar">
     <h1>${userData.name}</h1>
     <p>${userData.bio}</p>
@@ -61,15 +59,16 @@ function showUserData(userData){
     </div>
 `;
 
-    // if (userData.repos) {
-    //     userContent += `<div class="repos">`
+    if (userData.repos) {
+       
+        userContent += `<div class="repos">`
     
-    //     userData.repos.slice(0, 7).forEach(repo => {
-    //         userContent += `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`
-    //     })
+        userData.repos.forEach(repo => {
+            userContent += `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`
+        })
     
-    //     userContent += `</div>`;
-    //   }
+        userContent += `</div>`;
+      }
     
     
     userCard.innerHTML = userContent;
@@ -77,17 +76,5 @@ function showUserData(userData){
 
 //función para gestionar los errores 
 function showError(){
-
+    //console.log(error)
 }
-
-
-/*<img src="${userData.avatar_url}" alt="">
-<h1>${userData.name}</h1>
-<p>${userData.bio}</p>
-<div class="data">
-    <ul>
-        <li>Followers: ${userData.followers}</li>
-        <li>Following: ${userData.following}</li>
-        <li>Repositories: ${userData.public_repos}</li>
-    </ul>
-</div> */
